@@ -1,0 +1,63 @@
+@mixin sassy-text {
+  box-sizing: border-box;
+
+  padding: $base-line/2;
+  font-family: inherit;
+  vertical-align: middle;
+
+  border: 1px solid lighten($sassy-base-color, 10%);
+  border-radius: 4px;
+  outline: none;
+
+  &:focus {
+    border-color: $sassy-accent-color;
+    fieldset & {
+      // & {
+      //   box-shadow: 0px 0px 6px 0px $red;
+      //   border-color: $red;
+      // }
+      &:invalid {
+        box-shadow: 0px 0px 1px 1px $red;
+        border-color: $red;
+      }
+      &:not(:placeholder-shown):valid {
+        box-shadow: 0px 0px 6px 0px $green;
+        border-color: $green;
+      }
+    }
+  }
+
+  &:optional {
+    border-color: $color-grey;
+  }
+
+  &:required {
+    border-color: $color-grey-dark;
+  }
+
+  &:disabled {
+    background-color: $sassy-disabled-color;
+    cursor: not-allowed;
+  }
+
+  fieldset & {
+    &:not(:placeholder-shown):valid {
+      box-shadow: 0px 0px 1px 1px $green;
+      border-color: $green;
+    }
+  }
+}
+
+@mixin sassy-search {
+  @include sassy-text;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+}
+
+@mixin sassy-textarea {
+  @include sassy-text;
+
+  display: block;
+  overflow: auto;
+  background-size: 4% 38%;
+}

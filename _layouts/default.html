@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+
+  {% include head.html %}
+
+  <body class="page" itemscope itemtype="http://schema.org/WebPage">
+
+    
+    {% if page.item-path %}
+      {% include header-piece.html %}
+      {% else %}
+      {% include header.html %}
+    {% endif %}    
+
+    <main id="main">
+      {{ content }}
+    </main>
+    <script src="{{ site.baseurl }}/assets/js/blazy.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/unison.js"></script>
+    <script data-no-instant>
+      Unison.on('change', function(bp) {
+        switch ( bp.name ) {
+          case 'usn-medium':
+            var a = document.body;
+            a.classList ? a.classList.add('usn-medium') : a.className += ' usn-medium';
+            var bLazy = new Blazy({});
+            break;
+        }
+      });
+      {% if site.environment != 'development' %}
+        if (navigator.serviceWorker) {
+          navigator.serviceWorker.register('/sw.js').then(function(reg) {
+              if (!reg.installing) return;
+              console.log("[*] ServiceWorker is installing...");
+        
+              var worker = reg.installing;
+        
+              worker.addEventListener('statechange', function() {
+                  if (worker.state == 'redundant') {
+                      console.log('[*] Install failed');
+                  }
+                  if (worker.state == 'installed') {
+                      console.log('[*] Install successful!');
+                  }
+              });
+          });
+        }
+      {% endif %}
+    </script>
+
+  </body>
+</html>

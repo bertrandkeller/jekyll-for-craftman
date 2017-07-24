@@ -1,0 +1,118 @@
+---
+layout: default
+---
+
+<div class="gallery-detail">
+  {% assign src = page.filename | append: '.jpg' %}
+  {% assign data-src = page.item-path-principal | first | uri_escape | prepend:'/' %}
+  {% img '{{ src }}' magick:resize:600 alt:'{{ page.item-page }} {{ page.item-name }} {{ page.item-collaboration }}' data-src:'{{ data-src }}' class:'b-lazy' %}
+  <h1 class="h3">{{ page.item-name }}</h1>
+</div>
+
+<div class="gallery wrapper">
+
+<div class="center">
+  {% for resume in site.pages %}
+  {% if resume.path contains 'gallery' %}
+  {% if resume.path contains page.lang %}
+  {% assign resumetitle = resume.name | remove: '.md'%}
+  {{page.item-filename}}
+  {% if resumetitle == page.filename %}
+    {% if resume.hauteur or resume.largeur or resume.diametre or esume.diametre or resume.profondeur %}
+    <p class="center">
+    {% endif %}
+    
+    {% if resume.hauteur %}<span>Hauteur : {{ resume.hauteur }} cm</span><br>{% endif %}
+    {% if resume.largeur %}<span>Largeur : {{ resume.largeur }} cm</span><br>{% endif %}
+    {% if resume.diametre %}<span>Diamètre : {{ resume.diametre }} cm</span><br>{% endif %} 
+    {% if resume.profondeur %}<span>Profondeur : {{ resume.profondeur }} cm</span><br>{% endif %}
+    
+    {% if resume.hauteur or resume.largeur or resume.diametre or esume.diametre or resume.profondeur %}
+    </p>
+    {% endif %}
+    
+    {{ resume.content | markdownify }} 
+    
+    {% if resume.prix %}
+      <p class="center">Prix de vente : {{ resume.prix }}€</p>
+    {% endif %}
+    
+    {% if resume.lien-vente %}
+    <a href="{{ resume.lien-vente }}">Vous pouvez trouver la pièce en vente à cette adresse</a>
+    {% endif %}
+
+  {% endif %}
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+</div>
+</div>
+
+{% assign galleries = site.data.gallery | where: "permalink", page.permalink %}
+
+<div class="gallery">
+<div class="wrapper">
+{% for gallery in galleries %}
+  {% for image in gallery.categories  %}
+    {% unless image contains 'principal' %}
+    <h2>{{ image }}</h2>
+    <div class="grid">
+    {% endunless %}
+    {% assign gallery-slug = image %}
+      {% for image-path in gallery.item-path %}
+      {% if image-path contains image %}
+      {% unless image-path contains 'principal' %}
+        <div>
+          {% assign src = image-path | split: '/' %}
+          {% img '{{ src.last }}' magick:resize:600 alt:'{{ page.title }}' data-src:'{{ image-path }}' class:'b-lazy' %}
+        </div>
+      {% endunless %}
+      {% endif %}
+      {% endfor %}
+    {% unless image contains 'principal' %}  
+    </div>
+    {% endunless %}
+  {% endfor %}  
+{% endfor %}
+</div>
+</div>
+
+<div class="gallery gallery-list">
+<div class="wrapper">
+{% assign images = site.data.gallery | group_by: "subpage" %}
+{% assign count = 0 %} 
+
+{% for image_group in images %}
+
+{% for image in image_group.items %}
+    {% if image.slug contains page.slug %}
+      {% assign count = 1%}
+    {% endif %}
+{% endfor %}
+
+{% if count == 1 %}
+{% if image_group.name == page.subpage %}
+
+<div class="grid">
+{% for image in image_group.items %}
+  {% if image.lang contains page.lang %}
+  {% if image.slug contains page.slug %}
+  {% if image.filename !=  page.filename %}
+
+  {% assign src = image.filename | append: '.jpg' %}
+  {% assign data-src = image.item-path-principal | first | uri_escape | prepend:'/' %}
+
+  <a href="/{{ image.permalink }}">
+    {% img '{{ src }}' magick:resize:400 alt:'{{ image.slug }}' data-src:'{{ data-src }}' class:'b-lazy' %}
+  </a>
+  
+  {% endif %}
+  {% endif %}
+  {% endif %}
+{% endfor %}
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+</div>
+</div>

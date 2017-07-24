@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<div class="wrapper">
+  {{ content }}
+</div>
+
+{% if page.slug %}
+<div class="gallery gallery-list">
+<div class="wrapper">
+
+{% assign images = site.data.gallery | where: "slug", page.slug %}
+{% assign images_gallery = images | group_by: "subpage" %}
+{% assign count = 0 %}
+
+{% for image_group in images_gallery  %}
+
+{% for image in image_group.items %}
+    {% if image.slug contains page.slug %}
+      {% assign count = 1 %}
+    {% endif %}
+{% endfor %}
+
+{% if count == 1 %}
+<h2>{{ image_group.name }}</h2>
+<div class="grid">
+{% for image in image_group.items %}
+  {% if image.lang contains page.lang %}
+  {% if image.slug contains page.slug %}
+  {% assign src = image.filename | append: '.jpg' %}
+  {% assign data-src = image.item-path-piece | first | uri_escape | prepend:'/' %}
+      <a href="/{{ image.permalink }}">
+      {% img '{{ src }}' magick:resize:400 alt:'{{ image.slug }}' data-src:'{{ data-src }}' class:'b-lazy' %}
+      </a>
+  {% endif %}
+  {% endif %}
+{% endfor %}
+</div>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endif %}

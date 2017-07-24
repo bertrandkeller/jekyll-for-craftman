@@ -1,0 +1,79 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: Jekyll for craftman
+email: bertrand.keller@gmail.com
+description: Site for craftman
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+theme: overkyll-jekyll-theme
+permalink: /:title
+
+# Set default layout for pages
+defaults:
+  -
+    scope:
+      path: "gallery/pages"
+      type: "pages"
+    values:
+      layout: 'page'
+
+
+# Plugin: generate pages from Yaml
+page_gen-dirs: true # uncomment, if you prefer to generate named folders
+page_gen:
+  - data: 'gallery'
+    template: 'gallery'
+    name: 'item-name'
+    dir: ''	
+
+# Plugin: jekyll-assets
+assets:
+  sources:
+    - assets/js
+    - assets/css
+    - assets/images
+    - assets/images/background
+    - assets/fonts
+    - _sass
+    - gallery/banners/
+    - gallery/images/fr/
+    - gallery/images/en/
+  autoprefixer:
+    browsers: ["last 2 versions","> 5%","IE 9"]
+  compress:
+    css: true
+    js: true
+  features:
+    automatic_img_size: 2
+    automatic_img_alt: false
+
+include: 
+  - .htaccess
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - SparkleShare.txt
+  - Rakefile
+
+plugins:
+  - jekyll-optional-front-matter
+  - jekyll-default-layout
+  - jekyll-assets

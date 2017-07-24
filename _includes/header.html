@@ -1,0 +1,37 @@
+<div class="skip-links">
+  <a href="#main">Contenu principal</a>
+</div>
+{% for page in site.html_pages %}
+  {% if page.navigation %}
+    {% assign loopindex = loopindex | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if page.background %}
+  {% assign background-image-src = page.background | prepend: "/gallery/banners/" %}
+  {% capture img-bg %}
+    {% img '{{ page.background }}' magick:resize:600 alt:'{{ page.title }}' data-src:'{{ background-image-src }}' class:'b-lazy site-header-background' %}
+  {% endcapture %}
+{% else %}
+  {% assign background-image-light = "/gallery/banners/banner-light.jpg" %}
+  {% assign background-image = "/gallery/banners/banner.jpg" %}
+  {% capture img-bg %}
+    <img src="{{ site.baseurl }}{{ background-image-light }}" alt="{{ page.title }}" class="site-header-background b-lazy" data-src="{{ site.baseurl }}{{ background-image }}" />
+  {% endcapture %}
+{% endif %}
+
+
+<header class="site-header" role="banner">
+  {{ img-bg }}
+  <div class="wrapper">
+
+    <div class="site-logo">
+      <p class="site-title">{{ page.title }}</p>
+      <p class="site-slogan">{{ page.description }}</p>
+    </div>
+
+    {% include navigation.html %}
+
+  </div>
+
+</header>

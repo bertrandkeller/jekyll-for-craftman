@@ -1,0 +1,65 @@
+////
+/// Image Hover
+////
+
+// http://imagehover.io/
+
+@mixin fill($padding: 0) {
+  position: absolute;
+  top: $padding;
+  bottom: $padding;
+  left: $padding;
+  right: $padding;
+}
+
+[class^='imghvr-'],[class*=' imghvr-'] {
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  color: #fff;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+  > img {
+    vertical-align: top;
+    max-width: 100%;
+  }
+    figcaption {
+      background-color: rgba(0,0,0,0.5);
+      padding: $base-line;
+      @include fill;
+      font-size: $title2;
+      color: inherited;
+      h1, h2, h3, h4, h5, h6 {
+        color: inherited;
+      }
+    }
+    a {
+      @include fill;
+      z-index: 1;
+    }
+}
+
+[class^='imghvr-'], [class*=' imghvr-'], [class^='imghvr-']:before,
+[class^='imghvr-']:after, [class*=' imghvr-']:before, [class*=' imghvr-']:after,
+[class^='imghvr-'] *, [class*=' imghvr-'] *, [class^='imghvr-'] *:before,
+[class^='imghvr-'] *:after, [class*=' imghvr-'] *:before, [class*=' imghvr-'] *:after {
+  box-sizing: border-box;
+  transition: all 0.35s ease;
+}
+
+[class^='imghvr-slide-'], [class*=' imghvr-slide-'] {
+  &:hover {
+    figcaption {
+      transform: translate(0,0);
+    }
+  }
+}
+
+.imghvr-slide-left {
+  figcaption {
+    transform: translateX(100%);
+  }
+}

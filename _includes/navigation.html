@@ -1,0 +1,20 @@
+<nav id="luxbar" class="luxbar-static" role="navigation">
+    <input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox" />
+    <div class="luxbar-menu">
+        <ul class="luxbar-navigation">
+            <li class="luxbar-header">
+                <label class="luxbar-hamburger luxbar-hamburger-doublespin" id="luxbar-hamburger" for="luxbar-checkbox"> <span></span> </label>
+            </li>
+            <li class="luxbar-item">
+                <a class="page-link" href="/" class="{{ menu.lang }}">Accueil</a>
+            </li>
+            {% assign navigation = site.pages | sort:"weight" %}
+            {% for menu in navigation %} {% if menu.path contains page.lang %} {% if menu.navigation %} {% if menu.lang == page.lang
+            %}
+            <li class="luxbar-item">
+                <a class="page-link{% if page.title == menu.title %} active{% endif %}" href="{{ menu.url }}" class="{{ menu.lang }}">{{ menu.title }}</a>
+            </li>
+            {% endif %} {% endif %} {% endif %} {% endfor %}
+        </ul>
+    </div>
+</nav>
