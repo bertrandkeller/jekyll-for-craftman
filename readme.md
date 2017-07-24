@@ -1,6 +1,4 @@
-## Site de Barbara Billoud
-
-Présentation des œuvres en céramqieu de Barbara Billoud.
+## Theme for crafman
 
 ## Fonctionnement
 
@@ -24,6 +22,7 @@ navigation: false # Afficher la page dans le menu principal
 page: pdl # Mot clef de référence pour les galeries d'images
 lang: fr # Langue de la page
 permalink: fr/pied-de-lampe/ # Url de la page
+weight: position de la page dasn le menu
 ---
 ```
 
@@ -31,15 +30,14 @@ permalink: fr/pied-de-lampe/ # Url de la page
 
 Prendre une image, la formater aux dimensions voulues.
 La renommer selon de la chemin suivant :
-motclef-categorie+nom-de-l'œuvre+galerie+auteur.jpg (exemple : raku-bols+bol-blanc-léger+piece+barbara-billoud)
+motclef-categorie+nom-de-l'œuvre+galerie+auteur.jpg (exemple : raku-bols+bol-blanc-léger+principal)
 
 motclef : mot clef figurant dans les métadonnées d'une page afin d'afficher une galerie d'images
 categorie : La sous-catégorie d'éléments ppur les galeries d'images
 nom-de-l'œuvre : Titre de l'œuvre, titre la page de l'œuvre
 galerie : Sous groupe de galerie sur la page de l'œuvre
-auteur : Auteur de l'œuvre pour le référencement
 
-Pour Barbara
+Pour le rédacteur
 
 Aller dans photo
 Sélectionner des images (command + clic)
