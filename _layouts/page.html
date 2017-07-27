@@ -29,7 +29,7 @@ layout: default
   {% if image.lang contains page.lang %}
   {% if image.slug contains page.slug %}
   {% assign src = image.filename | append: '.jpg' %}
-  {% assign data-src = image.item-path-piece | first | uri_escape | prepend:'/' %}
+  {% assign data-src = image.item-path-principal | first | uri_escape | prepend:'/' %}
       <a href="/{{ image.permalink }}">
       {% img '{{ src }}' magick:resize:400 alt:'{{ image.slug }}' data-src:'{{ data-src }}' class:'b-lazy' %}
       </a>
