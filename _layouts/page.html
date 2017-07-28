@@ -31,16 +31,16 @@ layout: default
   {% assign src = image.filename | append: '.jpg' %}
   {% assign data-src = image.item-path-principal | first | uri_escape | prepend:'/' %}
   {% for static_file in site.static_files%}
-    {% assign smallpath = static_file.name | prepend: '/small/' %}
-    {% assign smallpath = static_file.name | prepend: '/medium/' %}
-    {% assign smallpath = static_file.name | prepend: '/large/' %}
-    {% if static_file.path == smallpath %}
+    {% assign smallpath = src | prepend: '/small/' %}
+    {% assign mediumpath = src | prepend: '/medium/' %}
+    {% assign largepath = src | prepend: '/large/' %}
+    {% if static_file.path contains smallpath %}
         {% assign small = true %}
     {% endif %}
-    {% if static_file.path contains static_file.name %}
+    {% if static_file.path contains mediumpath %}
         {% assign medium = true %}
     {% endif %}
-    {% if static_file.path contains static_file.name%}
+    {% if static_file.path contains largepath %}
         {% assign large = true %}
     {% endif %}
   {% endfor %}

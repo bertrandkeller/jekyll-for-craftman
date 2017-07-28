@@ -11,14 +11,25 @@
   {% assign src = page.background %}
 {% else %}
   {% assign src = "banner.jpg" %}
-  {% capture img-bg %}
-    <img src="{{ site.baseurl }}/images/small/{{ src }}" alt="{{ page.title }}" class="site-header-background b-lazy" data-src="{{ site.baseurl }}{{ /images/large/src }}" />
-  {% endcapture %}
 {% endif %}
 
+{% for static_file in site.static_files%}
+    {% assign smallpath = src | prepend: '/small/' %}
+    {% assign mediumpath = src | prepend: '/medium/' %}
+    {% assign largepath = src | prepend: '/large/' %}
+    {% if static_file.path contains smallpath %}
+        {% assign small = true %}
+    {% endif %}
+    {% if static_file.path contains mediumpath %}
+        {% assign medium = true %}
+    {% endif %}
+    {% if static_file.path contains largepath %}
+        {% assign large = true %}
+    {% endif %}
+{% endfor %}
 
 <header class="site-header" role="banner">
-  {{ img-bg }}
+  <img src="{% if small %}{{ site.baseurl }}/images/small/{{ src }}{% else %}{{ site.baseurl }}/gallery/banners/{{ src }}{% endif %}" alt="{{ page.title }}" class="site-header-background b-lazy" {% if large %}data-src="{{ site.baseurl }}/images/large/{{ src }}"{% endif %} />
   <div class="wrapper">
 
     <div class="site-logo">

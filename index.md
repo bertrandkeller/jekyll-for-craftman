@@ -1,7 +1,7 @@
 ---
 layout: page
 title: je suis un artisan
-description: J'utilise ce thème pour artisants (theme for craftman)
+description: J'utilise ce thème pour artisans (theme for craftman)
 lang: fr
 ---
 

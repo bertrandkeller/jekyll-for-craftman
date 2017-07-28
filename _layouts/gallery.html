@@ -6,16 +6,16 @@ layout: default
   {% assign src = page.filename | append: '.jpg' %}
   {% assign data-src = page.item-path-principal | first | uri_escape | prepend:'/' %}
   {% for static_file in site.static_files%}
-    {% assign smallpath = static_file.name | prepend: '/small/' %}
-    {% assign smallpath = static_file.name | prepend: '/medium/' %}
-    {% assign smallpath = static_file.name | prepend: '/large/' %}
-    {% if static_file.path == smallpath %}
+    {% assign smallpath = src | prepend: '/small/' %}
+    {% assign mediumpath = ssrc | prepend: '/medium/' %}
+    {% assign largepath = src | prepend: '/large/' %}
+    {% if static_file.path contains smallpath %}
         {% assign small = true %}
     {% endif %}
-    {% if static_file.path contains static_file.name %}
+    {% if static_file.path contains mediumpath %}
         {% assign medium = true %}
     {% endif %}
-    {% if static_file.path contains static_file.name%}
+    {% if static_file.path contains largepath %}
         {% assign large = true %}
     {% endif %}
   {% endfor %}
@@ -81,16 +81,16 @@ layout: default
         <div>
           {% assign src = image-path | split: '/' %}
           {% for static_file in site.static_files%}
-            {% assign smallpath = static_file.name | prepend: '/small/' %}
-            {% assign smallpath = static_file.name | prepend: '/medium/' %}
-            {% assign smallpath = static_file.name | prepend: '/large/' %}
-            {% if static_file.path == smallpath %}
+            {% assign smallpath = src | prepend: '/small/' %}
+            {% assign mediumpath = src | prepend: '/medium/' %}
+            {% assign largepath = src | prepend: '/large/' %}
+            {% if static_file.path contains smallpath %}
                 {% assign small = true %}
             {% endif %}
-            {% if static_file.path contains static_file.name %}
+            {% if static_file.path contains mediumpath %}
                 {% assign medium = true %}
             {% endif %}
-            {% if static_file.path contains static_file.name%}
+            {% if static_file.path contains largepath %}
                 {% assign large = true %}
             {% endif %}
           {% endfor %}
@@ -135,19 +135,19 @@ layout: default
   {% assign data-src = image.item-path-principal | first | uri_escape | prepend:'/' %}
 
   {% for static_file in site.static_files%}
-    {% assign smallpath = static_file.name | prepend: '/small/' %}
-    {% assign smallpath = static_file.name | prepend: '/medium/' %}
-    {% assign smallpath = static_file.name | prepend: '/large/' %}
-    {% if static_file.path == smallpath %}
-        {% assign small = true %}
-    {% endif %}
-    {% if static_file.path contains static_file.name %}
-        {% assign medium = true %}
-    {% endif %}
-    {% if static_file.path contains static_file.name%}
-        {% assign large = true %}
-    {% endif %}
-  {% endfor %}
+      {% assign smallpath = src | prepend: '/small/' %}
+      {% assign mediumpath = src | prepend: '/medium/' %}
+      {% assign largepath = src | prepend: '/large/' %}
+      {% if static_file.path contains smallpath %}
+          {% assign small = true %}
+      {% endif %}
+      {% if static_file.path contains mediumpath %}
+          {% assign medium = true %}
+      {% endif %}
+      {% if static_file.path contains largepath %}
+          {% assign large = true %}
+      {% endif %}
+    {% endfor %}
       <a href="/{{ image.permalink }}">
         <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ data-src }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
       </a>
