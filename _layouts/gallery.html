@@ -5,7 +5,23 @@ layout: default
 <div class="gallery-detail">
   {% assign src = page.filename | append: '.jpg' %}
   {% assign data-src = page.item-path-principal | first | uri_escape | prepend:'/' %}
-  <img src="/images/small/{{ src }}" srcset="/images/small/{{ src }} 320w, /images/medium/{{ src }} 640w, /images/large/{{ src }} 1024w, {{ data-src }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
+  {% for static_file in site.static_files%}
+    {% assign smallpath = static_file.name | prepend: '/small/' %}
+    {% assign smallpath = static_file.name | prepend: '/medium/' %}
+    {% assign smallpath = static_file.name | prepend: '/large/' %}
+    {% if static_file.path == smallpath %}
+        {% assign small = true %}
+    {% endif %}
+    {% if static_file.path contains static_file.name %}
+        {% assign medium = true %}
+    {% endif %}
+    {% if static_file.path contains static_file.name%}
+        {% assign large = true %}
+    {% endif %}
+  {% endfor %}
+      <a href="/{{ image.permalink }}">
+        <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ data-src }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ page.title }}" />
+      </a>
   <h1 class="h3">{{ page.item-name }}</h1>
 </div>
 
@@ -64,7 +80,23 @@ layout: default
       {% unless image-path contains 'principal' %}
         <div>
           {% assign src = image-path | split: '/' %}
-          {% img '{{ src.last }}' magick:resize:600 alt:'{{ page.title }}' data-src:'{{ image-path }}' class:'b-lazy' %}
+          {% for static_file in site.static_files%}
+            {% assign smallpath = static_file.name | prepend: '/small/' %}
+            {% assign smallpath = static_file.name | prepend: '/medium/' %}
+            {% assign smallpath = static_file.name | prepend: '/large/' %}
+            {% if static_file.path == smallpath %}
+                {% assign small = true %}
+            {% endif %}
+            {% if static_file.path contains static_file.name %}
+                {% assign medium = true %}
+            {% endif %}
+            {% if static_file.path contains static_file.name%}
+                {% assign large = true %}
+            {% endif %}
+          {% endfor %}
+              <a href="/{{ image.permalink }}">
+                <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ image-path }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
+              </a>
         </div>
       {% endunless %}
       {% endif %}
@@ -102,9 +134,23 @@ layout: default
   {% assign src = image.filename | append: '.jpg' %}
   {% assign data-src = image.item-path-principal | first | uri_escape | prepend:'/' %}
 
-  <a href="/{{ image.permalink }}">
-    <img src="/images/small/{{ src }}" srcset="/images/small/{{ src }} 320w, /images/medium/{{ src }} 640w, /images/large/{{ src }} 1024w, {{ data-src }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
-  </a>
+  {% for static_file in site.static_files%}
+    {% assign smallpath = static_file.name | prepend: '/small/' %}
+    {% assign smallpath = static_file.name | prepend: '/medium/' %}
+    {% assign smallpath = static_file.name | prepend: '/large/' %}
+    {% if static_file.path == smallpath %}
+        {% assign small = true %}
+    {% endif %}
+    {% if static_file.path contains static_file.name %}
+        {% assign medium = true %}
+    {% endif %}
+    {% if static_file.path contains static_file.name%}
+        {% assign large = true %}
+    {% endif %}
+  {% endfor %}
+      <a href="/{{ image.permalink }}">
+        <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ data-src }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
+      </a>
   
   {% endif %}
   {% endif %}
