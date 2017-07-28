@@ -3,7 +3,6 @@ ruby "2.3.1"
 
 require 'json'
 require 'open-uri'
-require "mini_magick"
 
 gem 'psych'
 gem 'deep_merge'
@@ -11,7 +10,6 @@ gem 'deep_merge'
 group :jekyll_plugins do
   gem 'jekyll-optional-front-matter'  
   gem 'jekyll-default-layout'
-  gem 'mini_magick'
   gem 'jekyll-assets'
   gem "overkyll-jekyll-theme"
 end
