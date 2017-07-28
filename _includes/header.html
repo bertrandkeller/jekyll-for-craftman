@@ -8,15 +8,11 @@
 {% endfor %}
 
 {% if page.background %}
-  {% assign background-image-src = page.background | prepend: "/gallery/banners/" %}
-  {% capture img-bg %}
-    {% img '{{ page.background }}' magick:resize:600 alt:'{{ page.title }}' data-src:'{{ background-image-src }}' class:'b-lazy site-header-background' %}
-  {% endcapture %}
+  {% assign src = page.background %}
 {% else %}
-  {% assign background-image-light = "/gallery/banners/banner-light.jpg" %}
-  {% assign background-image = "/gallery/banners/banner.jpg" %}
+  {% assign src = "banner.jpg" %}
   {% capture img-bg %}
-    <img src="{{ site.baseurl }}{{ background-image-light }}" alt="{{ page.title }}" class="site-header-background b-lazy" data-src="{{ site.baseurl }}{{ background-image }}" />
+    <img src="{{ site.baseurl }}/images/small/{{ src }}" alt="{{ page.title }}" class="site-header-background b-lazy" data-src="{{ site.baseurl }}{{ /images/large/src }}" />
   {% endcapture %}
 {% endif %}
 

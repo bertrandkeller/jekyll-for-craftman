@@ -3,6 +3,7 @@ ruby "2.3.1"
 
 require 'json'
 require 'open-uri'
+require "mini_magick"
 
 gem 'psych'
 gem 'deep_merge'
