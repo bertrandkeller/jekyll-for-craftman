@@ -13,6 +13,5 @@ node_modules
 npm-debug.log*
 gallery/
 SparkleShare.txt
-Rakefile
 .asset-cache/
 images/
