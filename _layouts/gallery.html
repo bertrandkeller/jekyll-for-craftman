@@ -20,7 +20,7 @@ layout: default
     {% endif %}
   {% endfor %}
       <a href="/{{ image.permalink }}">
-        <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ data-src }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ page.title }}" />
+        <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ data-src }} 1920w" sizes="(min-width: 80em) 50em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ page.title }}" />
       </a>
   <h1 class="h3">{{ page.item-name }}</h1>
 </div>
@@ -95,7 +95,7 @@ layout: default
             {% endif %}
           {% endfor %}
               <a href="/{{ image.permalink }}">
-                <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ image-path }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
+                <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ image-path }} 1920w" sizes="(min-width: 80em) 50em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
               </a>
         </div>
       {% endunless %}
@@ -149,7 +149,7 @@ layout: default
       {% endif %}
     {% endfor %}
       <a href="/{{ image.permalink }}">
-        <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ data-src }} 1920w" sizes="(min-width: 80em) 10em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
+        <img src="{% if small %}/images/small/{{ src }}{% else %}{{ data-src }}{% endif %}" srcset="{% if small %}/images/small/{{ src }} 320w,{% endif %}{% if medium %} /images/medium/{{ src }} 640w,{% endif %}{% if large %} /images/large/{{ src }} 1024w,{% endif %}{{ data-src }} 1920w" sizes="(min-width: 80em) 50em, (min-width:50em) 40em, (min-width:20em) 20em, 100vw" alt= "{{ image.slug }}" />
       </a>
   
   {% endif %}
